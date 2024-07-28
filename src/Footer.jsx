@@ -1,23 +1,18 @@
-import {
-  FaSquareFacebook,
-  FaXTwitter,
-  FaSquareYoutube,
-} from "react-icons/fa6";
+import { FaSquareFacebook, FaXTwitter, FaSquareYoutube } from "react-icons/fa6";
 import { FaInstagramSquare } from "react-icons/fa";
 import { MdContactPhone } from "react-icons/md";
 import { BsQuestionSquareFill } from "react-icons/bs";
 import { GrAccessibility } from "react-icons/gr";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <div className="h-min-32 bg-slate-400 mt-auto px-20 py-5 flex justify-around">
       <ul className="flex gap-3 flex-col">
-        <li className="mb-3 font-black text-xl">
-          SOCIAL
-        </li>
+        <li className="mb-3 font-black text-xl">SOCIAL</li>
         <li className="flex gap-2 items-center	">
           <FaSquareFacebook className="inline  text-facebook" />
-          <span>Facebook</span>
+          <Link to={"contact"}>Contact</Link>
         </li>
         <li className="flex gap-2 items-center	">
           <FaInstagramSquare className="inline text-instagram" />
@@ -33,9 +28,7 @@ const Footer = () => {
         </li>
       </ul>
       <ul className="flex gap-3 flex-col">
-        <li className="mb-3 font-black text-xl">
-          HELP
-        </li>
+        <li className="mb-3 font-black text-xl">HELP</li>
         <li className="flex gap-2 items-center	">
           <MdContactPhone className="inline" />
           <span>Contact us</span>

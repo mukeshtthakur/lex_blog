@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
@@ -11,6 +8,10 @@ export default {
         facebook: "#0866ff",
         instagram: "#f90dc1",
         questions: "#7218ff",
+      },
+      fontFamily: {
+        yesterYear: ["Yesteryear", "sans-serif"],
+        Lilita: ["Lilita One", "sans-serif"],
       },
     },
   },

@@ -8,7 +8,7 @@ const Form = () => {
     currentPassword: "",
     confirmPassword: "",
     gender: "",
-    hobbies: "",
+    hobbies: [],
     country: "",
   };
   const [user, setUser] = useState(initialState);
@@ -21,7 +21,23 @@ const Form = () => {
   };
 
   const handleHobbies = function (e) {
-    setUser({ ...user, hobbies });
+    const { value, name, type, checked } =
+      e.target;
+    console.log(checked);
+    if (user.hobbies.includes(value)) {
+      const newHobbies = user.hobbies.filter(
+        (hobby) => hobby !== value
+      );
+      setUser({
+        ...user,
+        hobbies: newHobbies,
+      });
+    } else {
+      setUser({
+        ...user,
+        hobbies: [...user.hobbies, value],
+      });
+    }
   };
 
   const handleSubmit = function (e) {
@@ -29,7 +45,11 @@ const Form = () => {
     if (
       !user.userName ||
       !user.currentPassword ||
-      !user.email
+      !user.email ||
+      !user.confirmPassword ||
+      !user.gender ||
+      !user.hobbies ||
+      !user.country
     ) {
       setSuccess(false);
       return;
@@ -57,7 +77,12 @@ const Form = () => {
             id="userName"
             type="text"
             className="border-2 border-tail-blue rounded-lg p-1"
-            onChange={(e) => {}}
+            onChange={(e) => {
+              setUser({
+                ...user,
+                userName: e.target.value,
+              });
+            }}
           />
         </div>
         {/********************** Email *********************************/}
@@ -175,31 +200,44 @@ const Form = () => {
                 type="checkbox"
                 name="hobbies"
                 value="reading"
-                onChange={handleGender}
+                checked={user.hobbies.includes(
+                  "reading"
+                )}
+                onChange={handleHobbies}
                 className="border-2 border-tail-blue rounded-lg p-1"
               />
               <label htmlFor="reading">
                 Reading
               </label>
             </div>
-            {/* Female */}
+            {/* Traveling */}
             <div className="flex gap-1">
               <input
                 id="traveling"
                 type="checkbox"
-                name="gender"
+                name="hobbies"
+                value="traveling"
+                checked={user.hobbies.includes(
+                  "traveling"
+                )}
+                onChange={handleHobbies}
                 className="border-2 border-tail-blue rounded-lg p-1"
               />
               <label htmlFor="traveling">
                 Traveling
               </label>
             </div>
-            {/* Others */}
+            {/* Sports */}
             <div className="flex gap-1">
               <input
-                id="others"
+                id="sports"
                 type="checkbox"
-                name="sports"
+                name="hobbies"
+                value="sports"
+                checked={user.hobbies.includes(
+                  "sports"
+                )}
+                onChange={handleHobbies}
                 className="border-2 border-tail-blue rounded-lg p-1"
               />
               <label htmlFor="sports">
@@ -207,6 +245,31 @@ const Form = () => {
               </label>
             </div>
           </div>
+        </div>
+        {/********************** Countries *********************************/}
+        <div className="grid-cols-2 grid">
+          <label htmlFor="country">Country</label>
+          <select
+            name="country"
+            id="country"
+            className="border-2 rounded-lg p-1.5"
+            value={user.country}
+            onChange={(e) =>
+              setUser({
+                ...user,
+                country: e.target.value,
+              })
+            }
+          >
+            <option value="india">India</option>
+            <option value="china">China</option>
+            <option value="usa">USA</option>
+            <option value="uk">UK</option>
+            <option value="nepal">Nepal</option>
+            <option value="sri lanka">
+              Sri Lanka
+            </option>
+          </select>
         </div>
         {/******************************Final Messages ***********/}
         {success === false && (
